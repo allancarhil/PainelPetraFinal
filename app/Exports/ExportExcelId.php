@@ -15,7 +15,7 @@ class ExportExcelId implements FromView
     public function __construct($equipamento, $id) {
         $this->equipamento = $equipamento;
         $this->id = $id;
-        $this->url = "http://192.168.0.246:8080/". $this->equipamento . "/" . $this->id;
+        $this->url = "http://127.0.0.1:8080/". $this->equipamento . "/" . $this->id;
 
 
         $ch = curl_init();

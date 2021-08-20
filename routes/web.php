@@ -235,6 +235,9 @@ Route::get('/usinaResumo', [App\Http\Controllers\usinaResumoController::class, '
 //Resumo Routes
 Route::get('/rebritagemResumo', [App\Http\Controllers\rebritagemResumoController::class, 'index'])->middleware('auth');
 
+//Route Excel
+
+Route::get('/data/{data}', [App\Http\Controllers\DataController::class, 'exportExcel'])->middleware('auth');
 
 //Route email
 Route::get('/mn01/envio-email',function(){

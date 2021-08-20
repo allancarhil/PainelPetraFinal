@@ -36,6 +36,7 @@ class Mn01Controller extends Controller
             return view('error', compact('error'));
         }
     }
+    
     public function data(Request $request){
 
         try{

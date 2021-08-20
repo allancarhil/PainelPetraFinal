@@ -15,7 +15,7 @@ class ExportExcelData implements FromView
     public function __construct($equipamento, $data) {
         $this->equipamento = $equipamento;
         $this->data = $data;
-        $this->url = "http://192.168.0.246:8080/". $this->equipamento . "/data". "/" . $this->data;
+        $this->url = "http://127.0.0.1:8080/". $this->equipamento . "/data". "/" . $this->data;
         $ch = curl_init();
         
         curl_setopt($ch,CURLOPT_URL, $this->url);

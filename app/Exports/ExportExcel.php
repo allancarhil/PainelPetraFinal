@@ -13,7 +13,7 @@ class ExportExcel implements FromView
 
     public function __construct($equipamento) {
         $this->equipamento = $equipamento;
-        $this->url = "http://192.168.0.246:8080/". $this->equipamento;
+        $this->url = "http://127.0.0.1:8080/". $this->equipamento;
 
 
         $ch = curl_init();
