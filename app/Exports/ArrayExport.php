@@ -40,7 +40,6 @@ class ArrayExport implements FromArray
 
     public function array(): array
     {
-
         return $this->dados;
     }
 }

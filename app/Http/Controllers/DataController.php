@@ -8,10 +8,7 @@ use Exception;
 use App\Models\Api;
 use Maatwebsite\Excel\Facades\Excel as Excel;
 
-//use Maatwebsite\Excel\Excel as ExcelExcel;
-
 use PDF;
-
 
 class DataController extends Controller
 {
@@ -25,15 +22,15 @@ class DataController extends Controller
             $excel = new ArrayExport($dados);
             $array = $excel->dados;
 
-
-            $indice = 0;
-            //dd($array[1][0]);
+            $var = [];
 
             for ($i = 1; $i <= count($array); $i++) {
                 foreach ($array[$i] as $arr => $key) {
-                    return Excel::download(new ExportExcel(strtolower($key->nome_equipamento)), "{$key->nome_equipamento}-todos.xlsx");
+                    $var[] = $key;
                 }
             }
+
+            return Excel::download(new ArrayExport($var,), "$data.todos.xlsx");
         } catch (Exception $error) {
             echo  $error;
         }
