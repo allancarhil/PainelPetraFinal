@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cabecalhos;
 use App\Exports\ArrayExport;
 use App\Exports\ExportExcel;
 use Exception;
@@ -22,15 +23,8 @@ class DataController extends Controller
             $excel = new ArrayExport($dados);
             $array = $excel->dados;
 
-            $var = [];
-
-            for ($i = 1; $i <= count($array); $i++) {
-                foreach ($array[$i] as $arr => $key) {
-                    $var[] = $key;
-                }
-            }
-
-            return Excel::download(new ArrayExport($var,), "$data.todos.xlsx");
+            //dd(new ArrayExport($array));
+            return (new ArrayExport($array))->download("$data.xlsx");
         } catch (Exception $error) {
             echo  $error;
         }

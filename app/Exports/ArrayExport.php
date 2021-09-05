@@ -2,13 +2,12 @@
 
 namespace App\Exports;
 
-use App\Models\Api;
-use Illuminate\Contracts\Support\Responsable;
-use Illuminate\Database\Eloquent\Collection;
 use Maatwebsite\Excel\Concerns\Exportable;
 use Maatwebsite\Excel\Concerns\FromArray;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
 
-class ArrayExport implements FromArray
+class ArrayExport implements FromArray, WithMultipleSheets, WithHeadings
 {
     use Exportable;
 
@@ -17,7 +16,7 @@ class ArrayExport implements FromArray
      */
 
     public $dados;
-
+    public $teste = [];
     public function __construct($dados)
     {
 
@@ -41,5 +40,21 @@ class ArrayExport implements FromArray
     public function array(): array
     {
         return $this->dados;
+    }
+
+    public function sheets(): array
+    {
+
+        $sheets = [];
+
+        for ($i = 1; $i <= count($this->dados); $i++) {
+            $sheets[] = new ArrayExport($this->dados[$i]);
+        }
+        return $sheets;
+    }
+
+    public function headings(): array
+    {
+       return $this->teste;
     }
 }
